@@ -45,4 +45,4 @@ Thermostat.prototype.usage_indicator = function() {
   };
 };
 
-console.log(thermostat.current_temp());
+console.log("Thermostat ready!");
