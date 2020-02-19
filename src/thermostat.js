@@ -1,9 +1,11 @@
+'use strict';
+
 function Thermostat() {
-  this.default_temp = 20;
-  this.temperature = this.default_temp;
-  this.min_temp = 10;
-  this.max_temp = 25;
-  this.max_temp_mode_off = 32;
+  this.DEFAULT_TEMP = 20;
+  this.temperature = this.DEFAULT_TEMP;
+  this.MIN_TEMP = 10;
+  this.MAX_TEMP = 25;
+  this.MAX_TEMP_MODE_OFF = 32;
   this.power_saving_mode = true;
 }
 
@@ -22,15 +24,15 @@ Thermostat.prototype.current_temp = function() {
 }
 
 Thermostat.prototype.increase_temp = function() {
-  if ( this.power_saving_mode === true) {
-    if (this.current_temp() < this.max_temp) { this.temperature++ };
+  if ( this.power_saving_mode) {
+    if (this.current_temp() < this.MAX_TEMP) { this.temperature++ };
   } else {
-    if (this.current_temp() < this.max_temp_mode_off) { this.temperature++ };
+    if (this.current_temp() < this.MAX_TEMP_MODE_OFF) { this.temperature++ };
   }
 }
 
 Thermostat.prototype.decrease_temp = function() {
-  if (this.current_temp() > this.min_temp) { this.temperature-- };
+  if (this.current_temp() > this.MIN_TEMP) { this.temperature-- };
 }
 
 Thermostat.prototype.usage_indicator = function() {

@@ -3,7 +3,7 @@
 describe('Thermostat', function() {
   var thermostat;
 
-  beforeEach(function(){
+  beforeEach(function() {
     thermostat = new Thermostat();
   })
 
@@ -27,7 +27,9 @@ describe('Thermostat', function() {
     it('sets the maximum at 32 if off', function() {
       thermostat.mode_switcher();
       expect(thermostat.power_saving_mode).toBe(false);
-      thermostat.temperature = 32;
+      for (var i = 0; i < 12; i++) {
+        thermostat.increase_temp();
+      }
       expect(thermostat.current_temp()).toEqual(32);
       thermostat.increase_temp();
       expect(thermostat.current_temp()).toEqual(32);
@@ -45,15 +47,15 @@ describe('Thermostat', function() {
 
   describe('temperature', function() {
     it('starts at default', function() {
-      expect(thermostat.temperature).toEqual(thermostat.default_temp)
+      expect(thermostat.current_temp()).toEqual(thermostat.DEFAULT_TEMP)
     });
 
     it('has a default min of 10', function() {
-      expect(thermostat.min_temp).toEqual(10);
+      expect(thermostat.MIN_TEMP).toEqual(10);
     });
 
     it('has a default max of 10', function() {
-      expect(thermostat.max_temp).toEqual(25);
+      expect(thermostat.MAX_TEMP).toEqual(25);
     });
   });
 
