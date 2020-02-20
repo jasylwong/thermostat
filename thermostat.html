@@ -8,60 +8,72 @@
   <title>Thermostat</title>
   <link rel='stylesheet' href='./public/css/styles.css'/>
   <script src='./src/thermostat.js'></script>
-  <script>
-    var thermostat = new Thermostat();
-  </script>
 </head>
 
 <body>
-  <a href="http://jquery.com/">jQuery</a></br></br>
-
-  <div id="show_temp"><script>document.write(thermostat.current_temp())</script></div>
-  <div id="show_usage"><script>document.write(thermostat.usage_indicator())</script></div>
-
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 
   <script>
     $( document ).ready(function() {
-      $( "a" ).click(function( event ) {
-        alert( "Thanks for visiting! This link no longer works" );
-        event.preventDefault();
-      });
+      var thermostat = new Thermostat();
+      updateTemperature();
 
-      $("#increase_temp").click(function(){
+      $('#select-city').click(function(event) {
+        event.preventDefault();
+        var city = $('#current-city').val();
+        
+        $.get('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=a3d9eb01d4de82b9b8d0849ef604dbed&units=metric', function(data) {
+          $('#current-temperature').text(data.main.temp);
+        })
+      })     
+
+      $("#increase_temp").click(function() {
         thermostat.increase_temp();
-        console.log(thermostat.current_temp())
-        $('#show_temp').text(thermostat.current_temp());
-        $('#show_usage').text(thermostat.usage_indicator());
+        updateTemperature();
       });
 
       $("#decrease_temp").click(function(){
         thermostat.decrease_temp();
-        console.log(thermostat.current_temp())
-        $('#show_temp').text(thermostat.current_temp());
-        $('#show_usage').text(thermostat.usage_indicator());
+        updateTemperature();
       });
 
       $("#mode_switch").click(function(){
         thermostat.mode_switcher();
-        $('#show_temp').text(thermostat.current_temp());
-        $('#show_usage').text(thermostat.usage_indicator());
+        updateTemperature();
         alert( "Power mode switched" )
       });
 
       $("#reset").click(function() {
         thermostat.reset();
+        updateTemperature();
+      });
+
+      function updateTemperature() {
         $('#show_temp').text(thermostat.current_temp());
         $('#show_usage').text(thermostat.usage_indicator());
-      });
+        $('#show_temp').attr('class', thermostat.usage_indicator());
+        console.log(thermostat.current_temp())
+      };
     });
   </script>
 
   </br>
+
+  <div id="show_temp"></div>
+  <div id="show_usage"></div>
   <button id="increase_temp">+</button>
   <button id="reset">Reset</button>
   <button id="mode_switch">Power Saving Mode</button>
   <button id="decrease_temp">-</button>
+  </br></br>
+
+  <section>
+    <h1>Current temperature: <span id="current-temperature">Choose a city</span></h1>
+    <form id="select-city">
+      <input id="current-city" type="text" placeholder="Enter a city"></input>
+      <input type="submit"></input>
+    </form>
+  </section>
 </body>
 
 </html>

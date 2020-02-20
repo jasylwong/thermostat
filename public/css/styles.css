@@ -1,12 +1,11 @@
-body {
-  color: blue;
+.low-usage {
+  color: green;
 }
 
-#display {
-  background: red;
-  width: 50px;
+.medium-usage {
+  color: orange;
 }
 
-.green {
+.high-usage {
   color: red;
 }
