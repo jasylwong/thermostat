@@ -13,15 +13,18 @@ var thermostat = new Thermostat;
 
 Thermostat.prototype.mode_switcher = function() {
   this.power_saving_mode = (this.power_saving_mode ? false : true); 
-}
+  if ( this.current_temp() > 25 && this.power_saving_mode === true) {
+    this.temperature = 25;
+  };
+};
 
 Thermostat.prototype.reset = function() {
   this.temperature = 20;
-}
+};
 
 Thermostat.prototype.current_temp = function() {
   return this.temperature;
-}
+};
 
 Thermostat.prototype.increase_temp = function() {
   if ( this.power_saving_mode) {
