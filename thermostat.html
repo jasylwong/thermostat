@@ -12,53 +12,16 @@
 
 <body>
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="./interface.js"></script>
 
   <script>
-    $( document ).ready(function() {
-      var thermostat = new Thermostat();
-      updateTemperature();
-
-      $('#select-city').click(function(event) {
-        event.preventDefault();
-        var city = $('#current-city').val();
-        
-        $.get('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=a3d9eb01d4de82b9b8d0849ef604dbed&units=metric', function(data) {
-          $('#current-temperature').text(data.main.temp);
-        })
-      })     
-
-      $("#increase_temp").click(function() {
-        thermostat.increase_temp();
-        updateTemperature();
-      });
-
-      $("#decrease_temp").click(function(){
-        thermostat.decrease_temp();
-        updateTemperature();
-      });
-
-      $("#mode_switch").click(function(){
-        thermostat.mode_switcher();
-        updateTemperature();
-        alert( "Power mode switched" )
-      });
-
-      $("#reset").click(function() {
-        thermostat.reset();
-        updateTemperature();
-      });
-
-      function updateTemperature() {
-        $('#show_temp').text(thermostat.current_temp());
-        $('#show_usage').text(thermostat.usage_indicator());
-        $('#show_temp').attr('class', thermostat.usage_indicator());
-        console.log(thermostat.current_temp())
-      };
-    });
+ 
   </script>
 
   </br>
 
+  <div id="current_time"></div>
+  </br>
   <div id="show_temp"></div>
   <div id="show_usage"></div>
   <button id="increase_temp">+</button>
@@ -66,6 +29,7 @@
   <button id="mode_switch">Power Saving Mode</button>
   <button id="decrease_temp">-</button>
   </br></br>
+  
 
   <section>
     <h1>Current temperature: <span id="current-temperature">Choose a city</span></h1>
