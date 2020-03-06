@@ -1,4 +1,4 @@
-# Thermostat 🌡
+# Thermostat  🌡
 
 Try it out right now, [click here](http://thermostat-js.surge.sh/)!
 
