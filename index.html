@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Thermostat</title>
+  <link rel='stylesheet' href='./public/css/styles.css'/>
+  <script src='./src/thermostat.js'></script>
+</head>
+
+<body>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="./interface.js"></script>
+  
+  <div class="container">
+    </br>
+    <h1>Thermostat</h1>
+    <div id="current_time"></div>
+    <div id="show_temp"></div></br>
+    <div id="show_usage"></div></br>
+    <button id="decrease_temp">-</button>
+    <button id="reset">Reset</button>
+    <button id="mode_switch">Power Saving Mode</button>
+    <button id="increase_temp">+</button>
+    </br></br>
+  </div>
+  </br>
+  <div class="container">  
+    </br>
+    <section>
+      <h1>Current temperature: <span id="current-temperature">Choose a city</span></h1>
+      <form id="select-city">
+        <input id="current-city" type="text" placeholder="Enter a city"></input>
+        <input type="submit"></input>
+      </form>
+    </section>
+    </br>
+  </div>
+</body>
+
+</html>

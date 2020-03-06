@@ -1,9 +1,9 @@
 $( document ).ready(function() {
   var thermostat = new Thermostat();
 
-  // $.get("http://localhost:4567/temperature", function(data) {
-  //   thermostat.temperature = $temperature
-  // })
+  $.get("http://localhost:4567/temperature", function(data) {
+    thermostat.temperature = data
+  })
   
   updateTemperature();
 
@@ -42,6 +42,9 @@ $( document ).ready(function() {
     $('#show_usage').text(thermostat.usage_indicator());
     $('#show_temp').attr('class', thermostat.usage_indicator());
     console.log(thermostat.current_temp())
+    $.post("http://localhost:4567/temperature", function() {
+      var save_temp = thermostat.current_temp;
+    })
   };
 
   // $.get("http://localhost:4567/time", function(data) {
@@ -49,6 +52,6 @@ $( document ).ready(function() {
   // });
 
   // $.post("http://localhost:4567/temperature", function() {
-  //   $temperature = 
+  //   var city = $('#show_temp').val();
   // })
 });
