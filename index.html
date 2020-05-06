@@ -18,7 +18,7 @@
     </br>
     <h1>Thermostat</h1>
     <div id="current_time"></div>
-    <div id="show_temp"></div></br>
+    <div id="show_temp"></div><div>°C</div></br>
     <div id="show_usage"></div></br>
     <button id="decrease_temp">-</button>
     <button id="reset">Reset</button>
@@ -29,12 +29,13 @@
   </br>
   <div class="container">  
     </br>
+    <h1>Choose a city:</h1>
     <section>
-      <h1>Current temperature: <span id="current-temperature">Choose a city</span></h1>
       <form id="select-city">
         <input id="current-city" type="text" placeholder="Enter a city"></input>
         <input type="submit"></input>
       </form>
+      <h1>Current temperature: <span id="current-temperature"></span>°C</h1>
     </section>
     </br>
   </div>
